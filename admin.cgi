@@ -19,7 +19,7 @@ Content-type: text/html; charset=UTF-8
 <head>
 <meta charset="UTF-8" />
 <title>管理者ページ</title>
-<link rel="stylesheet" type="text/css" href="style.css" />
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
 <header id="header">
@@ -27,7 +27,7 @@ Content-type: text/html; charset=UTF-8
 </header>
 <article>
 <h2>管理者モード</h2>
-<p><strong>エラー</strong>：パスワードが違います。</p>
+<p>エラー: パスワードが違います。</p>
 </article>
 </body>
 </html>
@@ -46,8 +46,8 @@ Content-type: text/html; charset=UTF-8
 <head>
 <meta charset="UTF-8" />
 <title>管理者ページ</title>
-<link rel="stylesheet" type="text/css" href="style.css" />
-<style type="text/css">
+<link rel="stylesheet" href="style.css" />
+<style>
 .form b{
 	width:15em;
 }
@@ -76,7 +76,7 @@ END
 		if($cgi->param('mode') eq 'init'){
 			if(init_ini()==0){
 				print <<END;
-<p><strong>エラー</strong>が発生しました。正常に初期化できませんでした。</p>
+<p>エラーが発生しました。正常に初期化できませんでした。</p>
 <p><a href="admin.cgi?mode=login&password=$ini::password">戻る</a></p>
 </article>
 </body>
@@ -155,7 +155,7 @@ END
 END
 	}else{
 		print <<END;
-<p><strong>エラー</strong>が発生しました。正常に復旧できませんでした。</p>
+<p>エラーが発生しました。正常に復旧できませんでした。</p>
 <p><a href="admin.cgi?mode=login&password=$ini::password">戻る</a></p>
 </article>
 </body>
@@ -221,7 +221,7 @@ if($cgi->param('mode') eq 'delview'){
 	# 表示
 	print <<END;
 <article id="threads">
-<h2>削除されたスレッド一覧</h2>
+<h2>削除されたスレ一覧</h2>
 <table>
 <tr>
 <th>No</th><th>題名</th><th>削除日時</th><th>備考</th>
@@ -238,7 +238,7 @@ END
 END
 	}
 	print "</table>\n";
-	print "<p>削除されたスレッドは<b>".(scalar @wastes)."個</b>あります。</p>\n";
+	print "<p>削除されたスレは<b>".(scalar @wastes)."個</b>あります。</p>\n";
 	print <<END;
 </article>
 </body>
@@ -291,19 +291,19 @@ if($cgi->param('mode') eq 'changestyle'){
 END
 	if(data::test()==0){
 		print <<END;
-<p><strong>ファイルに異常が発生しています。</strong></p>
+<p>ファイルに異常が発生しています。</p>
 END
 		if(!(-e "$ini::data/threads.cgi")&&(-e "$ini::data/waste.cgi")){
 			print <<END;
-<p><b>threads.cgi</b>がありません。今あるファイルを利用して<b>threads.cgi</b>を復旧できる可能性があります。</p>
+<p>threads.cgiがありません。今あるファイルを利用して<b>threads.cgi</b>を復旧できる可能性があります。</p>
 END
 		}elsif((-e "$ini::data/threads.cgi")&& !(-e "$ini::data/waste.cgi")){
 			print <<END;
-<p><b>waste.cgi</b>がありません。今あるファイルを利用して<b>waste.cgi</b>を復旧できる可能性があります。</p>
+<p>waste.cgiがありません。今あるファイルを利用して<b>waste.cgi</b>を復旧できる可能性があります。</p>
 END
 		}elsif(!(-e "$ini::data/threads.cgi")&& !(-e "$ini::data/waste.cgi")){
 			print <<END;
-<p><b>threads.cgi</b>と<b>waste.cgi</b>がありません。今あるファイルを利用して復旧できる可能性があります。</p>
+<p>threads.cgiとwaste.cgiがありません。今あるファイルを利用して復旧できる可能性があります。</p>
 END
 		}
 		print <<END;
@@ -319,7 +319,6 @@ END
 	print <<END;
 <h2>管理者モード</h2>
 <p>管理者モードで掲示板を閲覧すると、削除された書き込みや、編集された書き込みの編集前の状態を確認することができます。</p>
-<p>また、書き込み時のIPアドレスを閲覧できます。</p>
 <form action="admin.cgi" method="post">
 <p>
 <input type="hidden" name="password" value="$ini::password" />
@@ -331,7 +330,7 @@ END
 <p>
 <input type="hidden" name="password" value="$ini::password" />
 <input type="hidden" name="mode" value="delview" />
-<input type="submit" value="削除したスレッドを見る" />
+<input type="submit" value="削除したスレを見る" />
 </p>
 </form>
 
@@ -358,7 +357,7 @@ END
 <p>
 <input type="hidden" name="password" value="$ini::password" />
 <input type="hidden" name="mode" value="akukin" />
-<input type="submit" value="アクセス禁止設定画面" />
+<input type="submit" value="アク禁設定画面" />
 </p>
 </form>
 END
@@ -384,7 +383,7 @@ END
 exit(0);
 sub wrongpassword{
 		print <<END;
-<p><strong>エラー</strong>：パスワードが違います。</p>
+<p>エラー: パスワードが違います。</p>
 </article>
 </body>
 </html>
